@@ -12,7 +12,7 @@ pipeline {
         }
         stage ('build') {
             steps {
-                sh 'mvn *.war'
+                sh 'mvn package'
             }
         }
         stage ('deploy') {
