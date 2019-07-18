@@ -1,24 +1,12 @@
 pipeline {
-	agent {
-			docker {
-				image 'maven:3.6.1-jdk-11-slim' 
-			}
-		}
+    agent {
+        docker { image 'node:7-alpine' }
+    }
     stages {
-        stage ('git') {
+        stage('Test') {
             steps {
-                git 'https://github.com/nopTBeuH/boxfuse.git'
+                sh 'node --version'
             }
-        }
-        stage ('build') {
-            steps {
-                sh 'mvn package'
-            }
-        }
-        stage ('deploy') {
-            steps {
-                rsync ''
-            }   
         }
     }
 }
