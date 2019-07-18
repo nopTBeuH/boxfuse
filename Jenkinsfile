@@ -1,30 +1,25 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
-    }
+	agent {
+			docker {
+				image 'maven:3-alpine' 
+				args '-v /tmp:/tmp' 
+			}
+		}
     stages {
-        stage('Build') { 
+        stage ('git') {
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                git 'https://github.com/nopTBeuH/boxfuse.git'
             }
         }
-        stage('Test') {
+        stage ('build') {
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
+                sh 'mvn -B'
             }
         }
-        stage('Deliver') {
+        stage ('deploy') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
-            }
+                rsync ''
+            }   
         }
     }
 }
