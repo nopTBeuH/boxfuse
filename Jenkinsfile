@@ -9,7 +9,6 @@ pipeline {
         stage('Build') { 
             steps {
                 sh 'ls -ali'
-                sh 'tree'
             }
         }
     }
