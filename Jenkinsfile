@@ -1,25 +1,20 @@
 pipeline {
-	agent {
-			docker {
-				image 'maven:3-alpine' 
-				args '-v /root/.m2:/root/.m2'  
-			}
-		}
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
     stages {
-        stage ('git') {
+    	stage ('git') {
             steps {
                 git 'https://github.com/nopTBeuH/boxfuse.git'
             }
         }
-        stage ('build') {
+        stage('Build') {
             steps {
-                sh 'mvn package'
+                sh 'mvn -B'
             }
-        }
-        stage ('deploy') {
-            steps {
-                rsync ''
-            }   
         }
     }
 }
