@@ -18,7 +18,7 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                sh 'cp * ~/jenkins/tmp'
+                sh 'rsync -avz . /home/ubuntu/jenkins/tmp/'
             }   
         }
     }
