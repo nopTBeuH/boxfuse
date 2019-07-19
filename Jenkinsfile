@@ -18,7 +18,7 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                rsync '-avz . /home/ubuntu/jenkins/tmp/'
+                sh 'sudo rsync -avz /var/lib/jenkins/workspace/Boxfuse_docker/target/ /home/ubuntu/jenkins/tmp/'
             }   
         }
     }
