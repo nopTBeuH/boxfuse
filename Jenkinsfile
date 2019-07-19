@@ -18,7 +18,7 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                sh 'rsync -avz *.war /home/ubuntu/jenkins/tmp/'
+                sh 'mv *.war /home/ubuntu/jenkins/tmp/'
             }   
         }
     }
