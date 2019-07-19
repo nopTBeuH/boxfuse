@@ -2,6 +2,7 @@ pipeline {
 	agent {
 			docker {
 				image 'levelup:1'
+				args '-v /home/ubuntu/jenkins/tmp:/home/ubuntu/jenkins/tmp'
 			}
 		}
     stages {
