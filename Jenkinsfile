@@ -1,19 +1,20 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.3.3'
-            args '-v $HOME/.m2:/root/.m2'
-        }
-    }
+    agent none
     stages {
-    	stage ('git') {
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
             steps {
-                git 'https://github.com/nopTBeuH/boxfuse.git'
+                sh 'mvn --version'
             }
         }
-        stage('Build') {
-            docker.image('maven:3.3.3').inside {
-                sh 'mvn --version'
+        stage('Front-end') {
+            agent {
+                docker { image 'node:7-alpine' }
+            }
+            steps {
+                sh 'node --version'
             }
         }
     }
