@@ -18,8 +18,11 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                sh 'rsync -avz target /home/ubuntu/jenkins/tmp'
-            }   
+                sh 'rsync -avz ./target ubuntu@18.195.195.164:/var/lib/tomcat8/webapps'   
+            } 
+	    steps {
+                sh 'restart tomcat*'   
+            } 
         }
     }
 }
