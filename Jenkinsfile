@@ -1,7 +1,7 @@
 pipeline {
 	agent {
 			docker {
-				image 'levelup'
+				image 'levelup:1'
 			}
 		}
     stages {
