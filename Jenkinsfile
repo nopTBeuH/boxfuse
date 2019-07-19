@@ -1,8 +1,7 @@
 pipeline {
 	agent {
 			docker {
-				image 'maven:3-alpine' 
-				args '-v /root/.m2:/root/.m2'  
+				image 'levelup'
 			}
 		}
     stages {
@@ -18,7 +17,7 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                sh 'mv *.war /home/ubuntu/jenkins/tmp/'
+                sh 'rsync -avz . /home/ubuntu/jenkins/tmp'
             }   
         }
     }
